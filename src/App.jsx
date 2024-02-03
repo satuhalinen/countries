@@ -7,6 +7,9 @@ import Countries from "./routes/Countries";
 import CountriesSingle from "./routes/CountriesSingle";
 import Home from "./routes/Home";
 import Root from "./routes/Root";
+import store from "./store/store";
+import { Provider } from "react-redux";
+import Favourites from "./routes/Favourites";
 
 const theme = createTheme({
   palette: {
@@ -37,16 +40,19 @@ function App() {
           path: "countries/:single",
           element: <CountriesSingle />,
         },
+        { path: "/favourites", element: <Favourites /> },
       ],
     },
   ]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router}></RouterProvider>
-      </ThemeProvider>
-    </LocalizationProvider>
+    <Provider store={store}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router}></RouterProvider>
+        </ThemeProvider>
+      </LocalizationProvider>
+    </Provider>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -7,44 +6,23 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeCountries } from "../store/countriesSlice";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { addFavourite } from "../store/favouritesSlice";
 
-const Countries = () => {
+const Favourites = () => {
   const dispatch = useDispatch();
 
-  const countriesList = useSelector((state) => state.countries.countries);
-  const loading = useSelector((state) => state.countries.isLoading);
+  const favourites = useSelector((state) => state.favourites.favourites);
 
+  // TODO: Implement logic to retrieve favourites later.
   useEffect(() => {
     dispatch(initializeCountries());
   }, [dispatch]);
 
-  if (loading) {
-    return (
-      <Col className="text-center m-5">
-        <Spinner
-          animation="border"
-          role="status"
-          className="center"
-          variant="info"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </Col>
-    );
-  }
-
   return (
     <Container fluid>
       <Row xs={2} md={3} lg={4} className=" g-3">
-        {countriesList.map((country) => (
+        {favourites.map((country) => (
           <Col key={country.name.official} className="mt-5">
             <Card className="h-100">
-              <FavoriteIcon
-                color="red"
-                onClick={() => dispatch(addFavourite(country))}
-              />
               <Card.Img
                 variant="top"
                 className="rounded h-50"
@@ -87,4 +65,4 @@ const Countries = () => {
   );
 };
 
-export default Countries;
+export default Favourites;
