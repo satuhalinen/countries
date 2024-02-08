@@ -9,12 +9,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { initializeCountries } from "../store/countriesSlice";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { addFavourite } from "../store/favouritesSlice";
+import { useState } from "react";
 
 const Countries = () => {
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
 
   const countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
+  let searchResult = countriesList.filter((country) =>
+    country.name.official.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  };
 
   useEffect(() => {
     dispatch(initializeCountries());
@@ -37,8 +46,9 @@ const Countries = () => {
 
   return (
     <Container fluid>
+      <input onChange={searchHandler}></input>
       <Row xs={2} md={3} lg={4} className=" g-3">
-        {countriesList.map((country) => (
+        {searchResult.map((country) => (
           <Col key={country.name.official} className="mt-5">
             <Card className="h-100">
               <FavoriteIcon

@@ -12,7 +12,6 @@ const Favourites = () => {
 
   const favourites = useSelector((state) => state.favourites.favourites);
 
-  // TODO: Implement logic to retrieve favourites later.
   useEffect(() => {
     dispatch(initializeCountries());
   }, [dispatch]);

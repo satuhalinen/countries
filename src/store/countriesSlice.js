@@ -6,10 +6,11 @@ export const initializeCountries = () => {
     const countries = await countriesService.getAll();
     dispatch(getCountries(countries));
     setTimeout(() => {
-      dispatch(isLoading(false));
+      dispatch(isLoading(false)); 
     }, 1000);
   };
 };
+
 
 export const countriesSlice = createSlice({
   name: "countries",
