@@ -6,17 +6,16 @@ export const initializeCountries = () => {
     const countries = await countriesService.getAll();
     dispatch(getCountries(countries));
     setTimeout(() => {
-      dispatch(isLoading(false)); 
+      dispatch(isLoading(false));
     }, 1000);
   };
 };
 
-
 export const countriesSlice = createSlice({
   name: "countries",
   initialState: {
-    countries: [], // to access: useSelector((state) => state.countries.countries)
-    isLoading: true, // to access: useSelector((state) => state.countries.isLoading)
+    countries: [],
+    isLoading: true,
   },
   reducers: {
     getCountries(state, action) {

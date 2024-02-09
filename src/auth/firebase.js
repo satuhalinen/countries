@@ -1,10 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, addDoc, collection } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
   authDomain: "countries-ae40c.firebaseapp.com",
@@ -14,11 +12,10 @@ const firebaseConfig = {
   appId: "1:513123725759:web:b1221f6501bd9095c7b10a",
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-// Here we get access to the project authentification
+
 const auth = getAuth(app);
-// Here we get access to the project database
+
 const db = getFirestore(app);
 
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -32,9 +29,18 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
     });
   } catch (error) {
-    console.log(error);
+    alert(error.message);
+  }
+};
+export const loginWithEmailAndPassword = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
     alert(error.message);
   }
 };
 
-export { auth, db, registerWithEmailAndPassword };
+const logout = () => {
+  auth.signOut();
+};
+export { auth, db, registerWithEmailAndPassword, logout };

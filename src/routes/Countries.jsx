@@ -13,7 +13,6 @@ import { useState } from "react";
 
 const Countries = () => {
   const dispatch = useDispatch();
-  console.log("from ENV file: ");
   const [search, setSearch] = useState("");
 
   const countriesList = useSelector((state) => state.countries.countries);
