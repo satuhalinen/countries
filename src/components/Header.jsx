@@ -5,8 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import { logout } from "../auth/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../auth/firebase";
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <Container fluid>
       <Row>
@@ -18,21 +21,31 @@ const Header = () => {
                 <Link to="/">
                   <Button variant="contained">Home</Button>
                 </Link>
-                <Link to="/countries">
-                  <Button variant="contained">Countries</Button>
-                </Link>
-                <Link to="/favourites">
-                  <Button variant="contained">Favourites</Button>
-                </Link>
-                <Link to="/register">
-                  <Button variant="contained">Register</Button>
-                </Link>
-                <Link to="/login">
-                  <Button variant="contained">Login</Button>
-                </Link>
-                <Link>
-                  <Button onClick={logout}>Logout</Button>
-                </Link>
+                {user ? (
+                  <Link to="/countries">
+                    <Button variant="contained">Countries</Button>
+                  </Link>
+                ) : null}
+                {user ? (
+                  <Link to="/favourites">
+                    <Button variant="contained">Favourites</Button>
+                  </Link>
+                ) : null}
+                {!user ? (
+                  <Link to="/register">
+                    <Button variant="contained">Register</Button>
+                  </Link>
+                ) : null}
+                {!user ? (
+                  <Link to="/login">
+                    <Button variant="contained">Login</Button>
+                  </Link>
+                ) : null}
+                {user ? (
+                  <Link>
+                    <Button onClick={logout}>Logout</Button>
+                  </Link>
+                ) : null}
               </Nav>
             </Navbar.Collapse>
           </Container>
