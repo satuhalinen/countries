@@ -11,6 +11,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { addFavourite } from "../store/favouritesSlice";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { removeFavourite } from "../store/favouritesSlice";
+import { Button } from "react-bootstrap";
 
 const Countries = () => {
   const dispatch = useDispatch();
@@ -52,14 +55,16 @@ const Countries = () => {
         {searchResult.map((country) => (
           <Col key={country.name.official} className="mt-5">
             <Card className="h-100">
+              <Button onClick={() => dispatch(addFavourite(country))}>
+                <FavoriteIcon color="red" />
+              </Button>
+              <Button onClick={() => dispatch(removeFavourite(country))}>
+                <CloseOutlinedIcon className="btn-danger" />
+              </Button>
               <NavLink
                 to={`/countries/${country.name.official}`}
                 state={{ country: country }}
               >
-                <FavoriteIcon
-                  color="red"
-                  onClick={() => dispatch(addFavourite(country))}
-                />
                 <Card.Img
                   variant="top"
                   className="rounded h-50"
