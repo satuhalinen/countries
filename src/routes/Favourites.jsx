@@ -6,6 +6,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeCountries } from "../store/countriesSlice";
+import { Button } from "react-bootstrap";
+import { clearFavourites } from "../store/favouritesSlice";
 
 const Favourites = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,13 @@ const Favourites = () => {
 
   return (
     <Container fluid>
+      <Button
+        onClick={() => dispatch(clearFavourites())}
+        type="button"
+        className="btn btn-danger"
+      >
+        Clear Favourites
+      </Button>
       <Row xs={2} md={3} lg={4} className=" g-3">
         {favourites.map((country) => (
           <Col key={country.name.official} className="mt-5">
