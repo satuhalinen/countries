@@ -4,12 +4,31 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
-import { logout } from "../auth/firebase";
+import { logout, auth, db } from "../auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../auth/firebase";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserName() {
+      if (user) {
+        const citiesRef = collection(db, "users");
+        const q = query(citiesRef, where("uid", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          setUserName(doc.data().name);
+        });
+      } else {
+        setUserName(null);
+      }
+    }
+    fetchUserName();
+  }, [user]);
+
   return (
     <Container fluid>
       <Row>
@@ -47,6 +66,7 @@ const Header = () => {
                   </Link>
                 ) : null}
               </Nav>
+              {userName ? `Hello ${userName}!` : "Welcome!"}
             </Navbar.Collapse>
           </Container>
         </Navbar>
