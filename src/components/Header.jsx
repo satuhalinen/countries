@@ -35,7 +35,7 @@ const Header = () => {
         <Navbar bg="light" variant="light">
           <Container className="justify-content-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse className="navbar_collapse" id="basic-navbar-nav">
               <Nav>
                 <Link to="/">
                   <Button variant="contained">Home</Button>
@@ -66,7 +66,9 @@ const Header = () => {
                   </Link>
                 ) : null}
               </Nav>
-              {userName ? `Hello ${userName}!` : "Welcome!"}
+              <p className="helloParagraph">
+                {userName ? `Hello ${userName}!` : "Welcome!"}
+              </p>
             </Navbar.Collapse>
           </Container>
         </Navbar>

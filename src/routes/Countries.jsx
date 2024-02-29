@@ -55,12 +55,14 @@ const Countries = () => {
         {searchResult.map((country) => (
           <Col key={country.name.official} className="mt-5">
             <Card className="h-100">
-              <Button onClick={() => dispatch(addFavourite(country))}>
-                <FavoriteIcon color="red" />
-              </Button>
-              <Button onClick={() => dispatch(removeFavourite(country))}>
-                <CloseOutlinedIcon className="btn-danger" />
-              </Button>
+              <div className="likeDislikeButtons">
+                <Button onClick={() => dispatch(addFavourite(country))}>
+                  <FavoriteIcon color="red" />
+                </Button>
+                <Button onClick={() => dispatch(removeFavourite(country))}>
+                  <CloseOutlinedIcon className="btn-danger" />
+                </Button>
+              </div>
               <NavLink
                 to={`/countries/${country.name.official}`}
                 state={{ country: country }}

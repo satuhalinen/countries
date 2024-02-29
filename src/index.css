@@ -1,1 +1,17 @@
-body {}
+.likeDislikeButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.helloParagraph {
+  text-align: right;
+  margin: 0;
+}
+
+.navbar_collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
