@@ -78,7 +78,7 @@ const CountriesSingle = () => {
             <Button variant="light" onClick={() => navigate("/countries")}>
               Back to Countries
             </Button>
-            <Map></Map>
+            <Map country={country}></Map>
           </Col>
         </Row>
       </Container>

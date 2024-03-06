@@ -1,17 +1,18 @@
 import GoogleMapReact from "google-map-react";
 
-const Map = () => {
-  const VITE_GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const VITE_GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+
+const Map = ({ country }) => {
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
+      lat: country.capitalInfo.latlng[0],
+      lng: country.capitalInfo.latlng[1],
     },
-    zoom: 15,
+    zoom: 8,
   };
 
   return (
-    <div style={{ height: "50vh", width: "100%" }}>
+    <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: VITE_GOOGLE_API_KEY }}
         defaultCenter={defaultProps.center}
