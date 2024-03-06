@@ -2,8 +2,8 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { Button, Col, Image, Row, Spinner } from "react-bootstrap";
+import Map from "../components/Map";
 
 const CountriesSingle = () => {
   const location = useLocation();
@@ -78,6 +78,7 @@ const CountriesSingle = () => {
             <Button variant="light" onClick={() => navigate("/countries")}>
               Back to Countries
             </Button>
+            <Map></Map>
           </Col>
         </Row>
       </Container>

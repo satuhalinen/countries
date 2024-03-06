@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <Container fluid>
       <Row>
-        <Navbar bg="light" variant="light">
+        <Navbar style={{ backgroundColor: "#E4FFE1" }}>
           <Container className="justify-content-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="navbar_collapse" id="basic-navbar-nav">
@@ -57,12 +57,27 @@ const Header = () => {
                 ) : null}
                 {!user ? (
                   <Link to="/login">
-                    <Button variant="contained">Login</Button>
+                    <Button
+                      style={{
+                        backgroundColor: "#6A8D73",
+                        borderColor: "#6A8D73",
+                      }}
+                    >
+                      Login
+                    </Button>
                   </Link>
                 ) : null}
                 {user ? (
                   <Link>
-                    <Button onClick={logout}>Logout</Button>
+                    <Button
+                      style={{
+                        backgroundColor: "#6A8D73",
+                        borderColor: "#6A8D73",
+                      }}
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
                   </Link>
                 ) : null}
               </Nav>
