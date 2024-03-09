@@ -24,7 +24,7 @@ const Countries = () => {
   let searchResult = countriesList.filter((country) =>
     country.name.official.toLowerCase().includes(search.toLowerCase())
   );
-
+  console.log("searchResult on ", searchResult);
   const searchHandler = (e) => {
     setSearch(e.target.value);
   };
@@ -98,6 +98,11 @@ const Countries = () => {
                     </ListGroup.Item>
                     <ListGroup.Item>
                       {country.population.toLocaleString()}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      {country.borders && country.borders.length > 0
+                        ? country.borders[0]
+                        : "No neighbouring countries"}
                     </ListGroup.Item>
                   </ListGroup>
                 </Card.Body>
