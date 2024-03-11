@@ -24,7 +24,7 @@ const Countries = () => {
   let searchResult = countriesList.filter((country) =>
     country.name.official.toLowerCase().includes(search.toLowerCase())
   );
-  console.log("searchResult on ", searchResult);
+
   const searchHandler = (e) => {
     setSearch(e.target.value);
   };
@@ -46,6 +46,13 @@ const Countries = () => {
         </Spinner>
       </Col>
     );
+  }
+
+  function getCountryName(countryShortName) {
+    let filtered = countriesList.filter(
+      (country) => country.cca3 == countryShortName
+    );
+    return filtered[0].name.common;
   }
 
   return (
@@ -101,7 +108,9 @@ const Countries = () => {
                     </ListGroup.Item>
                     <ListGroup.Item>
                       {country.borders && country.borders.length > 0
-                        ? country.borders[0]
+                        ? country.borders
+                            .map((border) => getCountryName(border))
+                            .join(", ")
                         : "No neighbouring countries"}
                     </ListGroup.Item>
                   </ListGroup>
