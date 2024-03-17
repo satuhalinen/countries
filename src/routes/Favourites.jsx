@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initializeCountries } from "../store/countriesSlice";
 import { Button } from "react-bootstrap";
 import { clearFavourites } from "../store/favouritesSlice";
+import { getFromFirebase } from "../auth/firebase";
 
 const Favourites = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Favourites = () => {
 
   useEffect(() => {
     dispatch(initializeCountries());
+    dispatch(getFromFirebase());
   }, [dispatch]);
 
   return (

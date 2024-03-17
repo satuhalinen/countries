@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { getFirestore, addDoc, collection, getDocs } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { updateFromFirebase } from "../store/favouritesSlice";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
@@ -43,4 +44,21 @@ export const loginWithEmailAndPassword = async (email, password) => {
 const logout = () => {
   auth.signOut();
 };
-export { auth, db, registerWithEmailAndPassword, logout };
+
+function getFromFirebase() {
+  return (dispatch) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    console.log("updateFromFirebase toimii");
+    getDocs(collection(db, "users", user.uid, "favourites")).then(
+      (querySnapshot) => {
+        const favouritesFromFirebase = [];
+        querySnapshot.forEach((doc) => {
+          favouritesFromFirebase.push(doc.data());
+        });
+        dispatch(updateFromFirebase(favouritesFromFirebase));
+      }
+    );
+  };
+}
+export { auth, db, registerWithEmailAndPassword, logout, getFromFirebase };
