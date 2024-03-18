@@ -25,8 +25,15 @@ In this app you can check information related to different countries and see the
 
 1. Clone the repository: `git clone https://github.com/satuhalinen/countries.git`.
 2. Create profiles to Firebase and OpenWeatherMap to get corresponding API keys.
-3. Make `.env` file into root folder to write the API keys into in.
+3. Make `.env` file into root folder to write the API keys into it:
+   `VITE_FIREBASE_API = <api key>
+VITE_OPENWEATHER_API = <api key>
+VITE_GOOGLE_API_KEY = <api key>`
 4. Run command `npm install` to install `node_modules`.
 5. Run the project with `npm run dev`.
 
 ## Visuals
+
+- page Countries
+
+![Countries page](./public/countries.png)
