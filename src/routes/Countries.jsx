@@ -57,26 +57,37 @@ const Countries = () => {
 
   return (
     <Container fluid>
-      <input onChange={searchHandler}></input>
+      <input placeholder="Search" onChange={searchHandler}></input>
       <Row xs={2} md={3} lg={4} className=" g-3">
         {searchResult.map((country) => (
           <Col key={country.name.official} className="mt-5">
             <Card className="h-100">
               <div className="likeDislikeButtons">
-                <Button onClick={() => dispatch(addFavourite(country))}>
-                  <FavoriteIcon color="red" />
+                <Button
+                  style={{
+                    backgroundColor: "rgb(253, 114, 137)",
+                    borderColor: "rgb(253, 114, 137)",
+                  }}
+                  onClick={() => dispatch(addFavourite(country))}
+                >
+                  <FavoriteIcon />
                 </Button>
                 <Button
+                  style={{
+                    backgroundColor: "rgb(75, 191, 230)",
+                    borderColor: "rgb(75, 191, 230)",
+                  }}
                   onClick={() =>
                     dispatch(
                       removeFavourite({ id: country.id, name: country.name })
                     )
                   }
                 >
-                  <CloseOutlinedIcon className="btn-danger" />
+                  <CloseOutlinedIcon />
                 </Button>
               </div>
               <NavLink
+                style={{ textDecoration: "none" }}
                 to={`/countries/${country.name.official}`}
                 state={{ country: country }}
               >
@@ -91,7 +102,9 @@ const Countries = () => {
                   }}
                 />
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title>{country.name.common}</Card.Title>
+                  <Card.Title style={{ color: "black" }}>
+                    {country.name.common}
+                  </Card.Title>
                   <Card.Subtitle className="mb-5 text-muted">
                     {country.name.official}
                   </Card.Subtitle>

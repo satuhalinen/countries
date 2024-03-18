@@ -20,7 +20,7 @@ const Register = () => {
     if (user) navigate("/countries");
   }, [user, loading]);
   return (
-    <div>
+    <div className="login">
       <h1>Login</h1>
       <input
         type="text"
@@ -34,7 +34,15 @@ const Register = () => {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button onClick={login}>Login</Button>
+      <Button
+        style={{
+          backgroundColor: "rgb(106, 141, 115)",
+          borderColor: "rgb(106, 141, 115)",
+        }}
+        onClick={login}
+      >
+        Login
+      </Button>
     </div>
   );
 };

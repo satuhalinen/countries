@@ -46,10 +46,9 @@ const CountriesSingle = () => {
   }
   return (
     <>
-      <Container>
+      <Container className="container">
         <Row className="m-5">
-          <Col>
-            {" "}
+          <Col className="col">
             <Image
               thumbnail
               src={`https://source.unsplash.com/featured/1600x900?${country.capital}`}
@@ -74,7 +73,14 @@ const CountriesSingle = () => {
         </Row>
         <Row>
           <Col>
-            <Button variant="light" onClick={() => navigate("/countries")}>
+            <Button
+              className="backToCountries"
+              style={{
+                backgroundColor: "rgb(41 128 64)",
+                borderColor: "rgb(41 128 64)",
+              }}
+              onClick={() => navigate("/countries")}
+            >
               Back to Countries
             </Button>
             <Map country={country}></Map>

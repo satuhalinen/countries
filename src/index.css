@@ -15,3 +15,36 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.homeDiv {
+  flex-grow: 1;
+  padding-right: 100px;
+  padding-left: 100px;
+  margin-right: 30vh;
+  margin-left: 30vw;
+  margin-top: 5vw;
+}
+
+.dislikeButton {
+  margin: 20px;
+  color: rgb(253, 114, 137);
+  color: rgb(75, 230, 85);
+  color: rgb(149, 218, 132);
+}
+
+input {
+  margin: 20px;
+}
+
+.register,
+.login {
+  margin: 20px;
+}
+
+.col {
+  margin: 50px;
+}
+
+.backToCountries {
+  margin: 50px;
+}

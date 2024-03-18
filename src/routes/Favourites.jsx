@@ -23,9 +23,14 @@ const Favourites = () => {
   return (
     <Container fluid>
       <Button
+        className="dislikeButton"
         onClick={() => dispatch(clearFavourites())}
+        style={{
+          backgroundColor: "rgb(75, 191, 230)",
+          borderColor: "rgb(75, 191, 230)",
+          color: "white",
+        }}
         type="button"
-        className="btn btn-danger"
       >
         Clear Favourites
       </Button>

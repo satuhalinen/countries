@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { db } from "../auth/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 

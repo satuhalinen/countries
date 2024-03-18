@@ -32,8 +32,8 @@ const Header = () => {
   return (
     <Container fluid>
       <Row>
-        <Navbar style={{ backgroundColor: "#E4FFE1" }}>
-          <Container className="justify-content-end">
+        <Navbar style={{ backgroundColor: "rgb(186 230 142)" }}>
+          <Container fluid className="justify-content-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="navbar_collapse" id="basic-navbar-nav">
               <Nav>
@@ -71,8 +71,8 @@ const Header = () => {
                   <Link>
                     <Button
                       style={{
-                        backgroundColor: "#6A8D73",
-                        borderColor: "#6A8D73",
+                        backgroundColor: "rgb(41 128 64)",
+                        borderColor: "rgb(41 128 64)",
                       }}
                       onClick={logout}
                     >
