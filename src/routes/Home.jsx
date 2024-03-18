@@ -7,7 +7,7 @@ const Home = () => {
         to different countries and see the flags of them. Too see the
         information and flags you have to first either log in or register. If
         you are logged in, you can also add and remove your favourites. In the
-        right top corner you can see greeting based on your name.{" "}
+        right top corner you can see greeting based on your name.
       </p>
     </div>
   );
