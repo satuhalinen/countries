@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { db } from "../auth/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
 
 export const favouritesSlice = createSlice({
   name: "favourites",
@@ -23,24 +24,47 @@ export const favouritesSlice = createSlice({
       const user = auth.currentUser;
 
       if (user) {
-        addDoc(collection(db, "users", user.uid, "favourites"), action.payload)
-          .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
-      } else {
-        console.error("No user is signed in");
+        setDoc(
+          doc(db, "users", user.uid, "favourites", action.payload.name.common),
+          action.payload
+        )
+          .then(() => {})
+          .catch(() => {});
       }
     },
     clearFavourites(state) {
       state.favourites = [];
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        const favsRef = collection(db, "users", user.uid, "favourites");
+        getDocs(favsRef)
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              deleteDoc(doc.ref);
+            });
+          })
+          .catch(() => {});
+      }
     },
     removeFavourite(state, action) {
       state.favourites = state.favourites.filter(
         (favourite) => favourite.name.common !== action.payload.name.common
       );
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        const docRef = doc(
+          db,
+          "users",
+          user.uid,
+          "favourites",
+          action.payload.name.common
+        );
+        deleteDoc(docRef)
+          .then(() => {})
+          .catch(() => {});
+      }
     },
     updateFromFirebase(state, action) {
       state.favourites = action.payload;

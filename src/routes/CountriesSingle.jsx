@@ -21,8 +21,7 @@ const CountriesSingle = () => {
           country.capital
         }&units=metric&appid=${import.meta.env.VITE_OPENWEATHER_API}`
       )
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         setError(true);
       })
       .then((res) => {

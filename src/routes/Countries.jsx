@@ -66,7 +66,13 @@ const Countries = () => {
                 <Button onClick={() => dispatch(addFavourite(country))}>
                   <FavoriteIcon color="red" />
                 </Button>
-                <Button onClick={() => dispatch(removeFavourite(country))}>
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      removeFavourite({ id: country.id, name: country.name })
+                    )
+                  }
+                >
                   <CloseOutlinedIcon className="btn-danger" />
                 </Button>
               </div>

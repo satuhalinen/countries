@@ -49,7 +49,6 @@ function getFromFirebase() {
   return (dispatch) => {
     const auth = getAuth();
     const user = auth.currentUser;
-    console.log("updateFromFirebase toimii");
     getDocs(collection(db, "users", user.uid, "favourites")).then(
       (querySnapshot) => {
         const favouritesFromFirebase = [];
