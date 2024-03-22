@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { auth, loginWithEmailAndPassword } from "../auth/firebase";
 
-const Register = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -46,4 +46,4 @@ const Register = () => {
     </div>
   );
 };
-export default Register;
+export default Login;
